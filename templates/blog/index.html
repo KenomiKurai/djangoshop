@@ -1,0 +1,42 @@
+{% extends "blog/base.html" %}
+{% block content %}
+            <h1 class="page-header">
+                Page Heading
+                <small>Secondary Text</small>
+            </h1>
+
+            {% for post in posts %}
+            <!-- Blog Post -->
+            <h2>
+                <a href="{% url 'post' title=post.title %}">{{post.title}}</a>
+            </h2>
+            <p class="lead">
+                by <a href="index.php">{{post.user}}</a>
+            </p>
+            <p><span class="glyphicon glyphicon-time"></span> Posted on {{post.published_date}}</p>
+            <hr>
+             <a href="{% url 'post' title=post.title %} "><img class="img-responsive" src="{{  post.image.url }}" width="300" height="900" alt=""></a>
+            <hr>
+            <p>{{post.content|truncatewords:12}}</p>
+            <a class="btn btn-primary" href="post.html">Read More <span
+                    class="glyphicon glyphicon-chevron-right"></span></a>
+
+            <hr>
+            {% endfor%}
+            <!-- Pager -->
+            <ul class="pager">
+                {% if posts.has_previous %}
+                <li class="previous">
+                    <a href="?page={{ posts.previous_page_number }}">&larr; Prev</a>
+                </li>
+                {% endif %}
+                <span class="current">
+                    Page {{ posts.number }}
+                </span>
+                {% if posts.has_next %}
+                <li class="next">
+                    <a href="?page={{ posts.next_page_number }}">Next &rarr;</a>
+                </li>
+                {% endif %}
+            </ul>
+{% endblock %}

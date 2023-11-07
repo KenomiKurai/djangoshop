@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h2>Мій профіль</h2>
+            <hr>
+            <div class="row">
+                <div class="col-md-4">
+                    <img src="{% if user.userprofile.avatar %}{{ user.userprofile.avatar.url }}{% else %}https://www.meme-arsenal.com/memes/ccd0c24ed30b3293b72c019930babe38.jpg{% endif %}" alt="Аватар" style="max-width: 200px; max-height: 200px;">
+                    <br>
+                    <br>
+                    <a href="{% url 'edit_avatar' %}" class="btn btn-primary mt-2">Змінити аватар</a>
+                </div>
+                <div class="col-md-8">
+                    <p>Ім'я: {{ user.first_name }} {{ user.last_name }}</p>
+                    <p>Група: no info</p>
+                    <p>Страна: no info</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a href="{% url 'editProfile' %}" class="btn btn-primary">Редагувати профіль</a>
+                        </div>
+                        <div class="col-md-6">
+                            <a href="#" class="btn btn-primary">Особисті сповіщення</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "blog/base.html" %}
+{% load thumbnail %}
+{% block content %}
+          <h1>gallery</h1>
+
+
+        {% for img in photos %}
+            <div class="card thumbnail">
+                <img src="{{ img.image.url}}" alt="{{ img.description }}" class="card-img img-responsive">
+            </div>
+        {% endfor %}
+{% endblock %}
+

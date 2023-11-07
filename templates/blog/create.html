@@ -1,0 +1,30 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<!--            <form action="{% url 'create' %}" method="POST">-->
+<!--                {% csrf_token %}-->
+<!--              {{form.as_p}}-->
+<!--              <input type ='submit' value="save" class="btn-default">-->
+<!--            </form>-->
+
+<!-- blog/create.html -->
+<form method="post">
+  {% csrf_token %}
+  {{ post_form.as_p }}
+
+  <div class="category-input">
+    <label for="id_category">Категория:</label>
+    <select id="id_category" name="category">
+      <option value="">---------</option>
+      {% for category in categories %}
+        <option value="{{ category.id }}">{{ category.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <button type="submit">Сохранить пост</button>
+</form>
+
+<p><a href="{% url 'create_category' %}">Создать категорию</a></p>
+
+{% endblock %}
